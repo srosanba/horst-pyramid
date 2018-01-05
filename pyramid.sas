@@ -1,46 +1,8 @@
 %let path = H:\GitHub\srosanba\pyramid;
 
-libname pyramid "path";
-
 
 %macro pyramid(goal=);
 
-   *--- generate pyramid outline ---;
-   data outline;
-      y = 1;
-      do xo = -7.5 to 7.5;
-         output;
-      end;
-      y = 2;
-      do xo = -3.5 to 3.5;
-         output;
-      end;
-      y = 3;
-      do xo = -1.5 to 1.5;
-         output;
-      end;
-      y = 4;
-      do xo = -0.5 to 0.5;
-         output;
-      end;
-      y = 5;
-      xo = 0;
-      output;
-      format y pyr&goal..;
-   run;
-
-
-   *--- import tick list ---;
-   proc import 
-         datafile="&path/ticks.csv"
-         out=tickimp
-         dbms=csv
-         replace
-         ;
-   run;
-
-
-   *-- combine outline and tick list ---;
    proc format;
       value pyr11a
          1 = "10a"
@@ -79,6 +41,43 @@ libname pyramid "path";
          ;
    run;
 
+
+   *--- generate pyramid outline ---;
+   data outline;
+      y = 1;
+      do xo = -7.5 to 7.5;
+         output;
+      end;
+      y = 2;
+      do xo = -3.5 to 3.5;
+         output;
+      end;
+      y = 3;
+      do xo = -1.5 to 1.5;
+         output;
+      end;
+      y = 4;
+      do xo = -0.5 to 0.5;
+         output;
+      end;
+      y = 5;
+      xo = 0;
+      output;
+      format y pyr&goal..;
+   run;
+
+
+   *--- import tick list ---;
+   proc import 
+         datafile="&path/ticks.csv"
+         out=tickimp
+         dbms=csv
+         replace
+         ;
+   run;
+
+
+   *-- combine outline and tick list ---;
    proc sql;
       create   table grades as
       select   distinct y
@@ -86,7 +85,7 @@ libname pyramid "path";
       ;
       create   table tickplot0 as
       select   y
-      from     ticklist as tl
+      from     tickimp as tl
                left join grades as g
                on tl.grade = put(g.y,pyr&goal..)
       order by y
