@@ -1,3 +1,5 @@
+options mprint;
+
 %let path = H:\GitHub\srosanba\pyramid;
 
 
@@ -77,7 +79,7 @@
    run;
 
 
-   *-- combine outline and tick list ---;
+   *-- count ticks at each grade ---;
    proc sql;
       create   table grades as
       select   distinct y
@@ -97,6 +99,8 @@
       ;
    quit;
 
+
+   *--- place ticks over outline ---;
    data tickplot2;
       set tickplot1;
       if mod(count,2) = 0 then do;
@@ -114,12 +118,30 @@
          put "W" "ARNING: you have accomplished your goal!!!";
    run;
 
-   data plotdata;
-      set outline tickplot2;
+
+   *--- thin over-climbed grades ---;
+   data tickplot3;
+      set tickplot2;
+      if missing(y) then
+         delete;
+      else if y = 1 and (xt < -7.5 or 7.5 < xt) then
+         delete;
+      else if y = 2 and (xt < -3.5 or 3.5 < xt) then
+         delete;
+      else if y = 3 and (xt < -1.5 or 1.5 < xt) then
+         delete;
+      else if y = 4 and (xt < -0.5 or 0.5 < xt) then
+         delete;
+      else if y = 5 and (xt < -0.0 or 0.0 < xt) then
+         delete;
    run;
 
 
-   *--- plot the outline ---;
+   *--- plot outline and ticks ---;
+   data plotdata;
+      set outline tickplot3;
+   run;
+
    ods graphics / reset=all width=8in height=3in;
    ods listing gpath = "&path";
    ods graphics / imagename = "pyr&goal";
