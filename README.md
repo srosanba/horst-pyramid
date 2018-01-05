@@ -3,7 +3,7 @@ how to climb 5.11a
 
 based on the following [ticks](https://github.com/srosanba/pyramid/blob/master/ticks.csv)
 
-inspired by Eric Horst's pyramid system in How to Climb 5.12
+inspired by Eric Horst's pyramid system in the book [How to Climb 5.12](https://www.amazon.com/How-Climb-5-12/dp/0762770295)
 ![pyramid](http://3.bp.blogspot.com/-z2E8lq3uMQ0/UdL99TcdH4I/AAAAAAAACc4/7rejj6l0uBs/s640/ClimbingPyramidExam.jpg)
 
 
