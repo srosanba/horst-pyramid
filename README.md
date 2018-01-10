@@ -8,3 +8,4 @@ I thought it would be fun to geek out and produce a pyramid graphic using SAS. B
 
 ![pyramid](https://github.com/srosanba/pyramid/blob/master/pyr11b.png)
 
+I've built a pretty solid base for 11a and should be making an attempt soon. On the other hand, I've got a ways to go in building up to 11b.
