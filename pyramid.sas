@@ -6,6 +6,13 @@ options mprint;
 %macro pyramid(goal=);
 
    proc format;
+      value pyr10d
+         1 = "9"
+         2 = "10a"
+         3 = "10b"
+         4 = "10b"
+         5 = "10d"
+         ;
       value pyr11a
          1 = "10a"
          2 = "10b"
@@ -157,6 +164,7 @@ options mprint;
 %mend pyramid;
 
 ods pdf file="&path/pyramids.pdf" startpage=never;
+%pyramid(goal=10d)
 %pyramid(goal=11a)
 %pyramid(goal=11b)
 ods pdf close;
