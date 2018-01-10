@@ -6,47 +6,47 @@ options mprint;
 %macro pyramid(goal=);
 
    proc format;
-      value pyr10d
+      value pyr10c
          1 = "9"
          2 = "10a"
          3 = "10b"
-         4 = "10b"
-         5 = "10d"
+         4 = "10c"
          ;
-      value pyr11a
+      value pyr10d
          1 = "10a"
          2 = "10b"
          3 = "10c"
          4 = "10d"
-         5 = "11a"
          ;
-      value pyr11b
+      value pyr11a
          1 = "10b"
          2 = "10c"
          3 = "10d"
          4 = "11a"
-         5 = "11b"
          ;
-      value pyr11c
+      value pyr11b
          1 = "10c"
          2 = "10d"
          3 = "11a"
          4 = "11b"
-         5 = "11c"
          ;
-      value pyr11d
+      value pyr11c
          1 = "10d"
          2 = "11a"
          3 = "11b"
          4 = "11c"
-         5 = "11d"
          ;
-      value pyr12a
+      value pyr11d
          1 = "11a"
          2 = "11b"
          3 = "11c"
          4 = "11d"
-         5 = "12a"
+         ;
+      value pyr12a
+         1 = "11b"
+         2 = "11c"
+         3 = "11d"
+         4 = "12a"
          ;
    run;
 
@@ -54,22 +54,18 @@ options mprint;
    *--- generate pyramid outline ---;
    data outline;
       y = 1;
-      do xo = -7.5 to 7.5;
-         output;
-      end;
-      y = 2;
       do xo = -3.5 to 3.5;
          output;
       end;
-      y = 3;
+      y = 2;
       do xo = -1.5 to 1.5;
          output;
       end;
-      y = 4;
+      y = 3;
       do xo = -0.5 to 0.5;
          output;
       end;
-      y = 5;
+      y = 4;
       xo = 0;
       output;
       format y pyr&goal..;
@@ -79,7 +75,7 @@ options mprint;
    *--- import tick list ---;
    proc import 
          datafile="&path/ticks.csv"
-         out=tickimp
+         out=tickimport
          dbms=csv
          replace
          ;
@@ -94,9 +90,9 @@ options mprint;
       ;
       create   table tickplot0 as
       select   y
-      from     tickimp as tl
+      from     tickimport as ti
                left join grades as g
-               on tl.grade = put(g.y,pyr&goal..)
+               on ti.grade = put(g.y,pyr&goal..)
       order by y
       ;
       create   table tickplot1 as
@@ -107,50 +103,82 @@ options mprint;
    quit;
 
 
-   *--- place ticks over outline ---;
+   *--- add rows for grades not present ---;
    data tickplot2;
-      set tickplot1;
-      if mod(count,2) = 0 then do;
-         start = -1*count/2 + 0.5;
-         end = -1*start;
-      end;
-      else if mod(count,2) = 1 then do;
-         start = -1*count/2;
-         end = -1*start - 1;
-      end;
-      do xt = start to end;
-         output;
-      end;
-      if y = 5 then 
-         put "W" "ARNING: you have accomplished your goal!!!";
+      merge grades tickplot1;
+      by y;
+      if missing(count) then
+         count = 0;
+   run;
+
+   proc sort data=tickplot2;
+      by descending y;
    run;
 
 
-   *--- thin over-climbed grades ---;
+   *--- relocate over-climbed grades ---;
    data tickplot3;
       set tickplot2;
-      if missing(y) then
-         delete;
-      else if y = 1 and (xt < -7.5 or 7.5 < xt) then
-         delete;
-      else if y = 2 and (xt < -3.5 or 3.5 < xt) then
-         delete;
-      else if y = 3 and (xt < -1.5 or 1.5 < xt) then
-         delete;
-      else if y = 4 and (xt < -0.5 or 0.5 < xt) then
-         delete;
-      else if y = 5 and (xt < -0.0 or 0.0 < xt) then
-         delete;
+      retain carry 0;
+      if y = 4 then do;
+         if count > 1 then do;
+            carry = count - 1;
+            count = 1;
+         end;
+      end;
+      else if y = 3 then do;
+         count = count + carry;
+         if count > 2 then do;
+            carry = count - 2;
+            count = 2;
+         end;
+      end;
+      else if y = 2 then do;
+         count = count + carry;
+         if count > 4 then do;
+            carry = count - 4;
+            count = 4;
+         end;
+      end;
+      else if y = 1 then do;
+         count = count + carry;
+         if count > 8 then do;
+            carry = count - 8;
+            count = 8;
+         end;
+      end;
+   run;
+
+
+   *--- place ticks over outline ---;
+   data tickplot4;
+      set tickplot3;
+      if count > 0 then do;
+         if mod(count,2) = 0 then do;
+            start = -1*count/2 + 0.5;
+            end = -1*start;
+         end;
+         else if mod(count,2) = 1 then do;
+            start = -1*count/2;
+            end = -1*start - 1;
+         end;
+         if y = 4 then do;
+            start = 0;
+            end = 0;
+         end;
+         do xt = start to end;
+            output;
+         end;
+      end;
    run;
 
 
    *--- plot outline and ticks ---;
    data plotdata;
-      set outline tickplot3;
-      if y = 1 then delete;
+      set outline tickplot4;
    run;
 
-   ods graphics / reset=all width=6in height=3in;
+   ods graphics / reset=all width=6in height=2.75in;
    ods listing gpath = "&path";
    ods graphics / imagename = "pyr&goal";
 
@@ -164,6 +192,7 @@ options mprint;
 %mend pyramid;
 
 ods pdf file="&path/pyramids.pdf" startpage=never;
+%pyramid(goal=10c)
 %pyramid(goal=10d)
 %pyramid(goal=11a)
 %pyramid(goal=11b)
