@@ -140,16 +140,17 @@ options mprint;
    *--- plot outline and ticks ---;
    data plotdata;
       set outline tickplot3;
+      if y = 1 then delete;
    run;
 
-   ods graphics / reset=all width=8in height=3in;
+   ods graphics / reset=all width=6in height=3in;
    ods listing gpath = "&path";
    ods graphics / imagename = "pyr&goal";
 
    proc sgplot data=plotdata noautolegend;
-      scatter x=xo y=y / markerattrs=(symbol=square size=40);
-      scatter x=xt y=y / markerattrs=(symbol=squarefilled size=30 color=green);
-      yaxis display=(nolabel);
+      scatter x=xo y=y / markerattrs=(symbol=square size=50);
+      scatter x=xt y=y / markerattrs=(symbol=squarefilled size=40 color=green);
+      yaxis display=(nolabel) integer;
       xaxis display=none;
    run;
 
@@ -158,5 +159,4 @@ options mprint;
 ods pdf file="&path/pyramids.pdf" startpage=never;
 %pyramid(goal=11a)
 %pyramid(goal=11b)
-%pyramid(goal=11c)
 ods pdf close;
