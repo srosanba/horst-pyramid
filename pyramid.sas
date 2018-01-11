@@ -1,6 +1,7 @@
 options mprint;
 
-%let path = H:\GitHub\srosanba\pyramid;
+%*let path = H:\GitHub\srosanba\pyramid;
+%let path = /folders/myfolders/horst-pyramid;
 
 
 %macro pyramid(goal=);
