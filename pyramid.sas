@@ -1,10 +1,15 @@
 options mprint;
 
-%*let path = H:\GitHub\srosanba\pyramid;
-%let path = /folders/myfolders/horst-pyramid;
+%let path = H:\GitHub\srosanba\pyramid\horst-pyramid;
+%*let path = /folders/myfolders/horst-pyramid;
 
 
 %macro pyramid(goal=);
+
+   data _null_;
+      today = today();
+      call symputx('today',put(today,yymmdd10.));
+   run;
 
    proc format;
       value pyr10c
@@ -188,6 +193,7 @@ options mprint;
       scatter x=xt y=y / markerattrs=(symbol=squarefilled size=40 color=green);
       yaxis display=(nolabel) integer;
       xaxis display=none;
+      inset "&today" / position=topright;
    run;
 
 %mend pyramid;
