@@ -97,7 +97,7 @@ options mprint;
       create   table tickplot0 as
       select   y
       from     tickimport as ti
-               left join grades as g
+               inner join grades as g
                on ti.grade = put(g.y,pyr&goal..)
       order by y
       ;
@@ -199,7 +199,7 @@ options mprint;
 %mend pyramid;
 
 ods pdf file="&path/pyramids.pdf" startpage=never;
-%pyramid(goal=10d)
-%pyramid(goal=11a)
+/*%pyramid(goal=10d)*/
+/*%pyramid(goal=11a)*/
 %pyramid(goal=11b)
 ods pdf close;
