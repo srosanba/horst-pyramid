@@ -199,7 +199,7 @@ options mprint;
 %mend pyramid;
 
 ods pdf file="&path/pyramids.pdf" startpage=never;
-%pyramid(goal=10d)
 %pyramid(goal=11a)
 %pyramid(goal=11b)
+%pyramid(goal=11c)
 ods pdf close;

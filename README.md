@@ -2,10 +2,10 @@ In Eric Horst's classic book [How to Climb 5.12](https://www.amazon.com/How-Clim
 
 ![pyramid](http://3.bp.blogspot.com/-z2E8lq3uMQ0/UdL99TcdH4I/AAAAAAAACc4/7rejj6l0uBs/s640/ClimbingPyramidExam.jpg)
 
-I thought it would be fun to geek out and produce a pyramid graphic using SAS. Based on the climbs I've completed thus far in 2018 ([csv](https://github.com/srosanba/pyramid/blob/master/ticks.csv)), here is what my pyramids would look like for grades 10d-11b.
-
-![pyramid](https://github.com/srosanba/pyramid/blob/master/pyr10d.png)
+I thought it would be fun to geek out and produce a pyramid graphic using SAS. Based on the climbs I've completed thus far in 2018 ([csv](https://github.com/srosanba/pyramid/blob/master/ticks.csv)), here is what my pyramids would look like for grades 11a-11c.
 
 ![pyramid](https://github.com/srosanba/pyramid/blob/master/pyr11a.png)
 
 ![pyramid](https://github.com/srosanba/pyramid/blob/master/pyr11b.png)
+
+![pyramid](https://github.com/srosanba/pyramid/blob/master/pyr11c.png)
