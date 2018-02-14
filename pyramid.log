@@ -1,4 +1,4 @@
-1                                                          The SAS System                             10:40 Friday, February 2, 2018
+1                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA. 
 NOTE: SAS (r) Proprietary Software 9.4 (TS1M4) 
@@ -17,8 +17,8 @@ NOTE: Additional host information:
  X64_SR12R2 WIN 6.3.9600  Server
 
 NOTE: SAS initialization used:
-      real time           0.09 seconds
-      cpu time            0.09 seconds
+      real time           0.29 seconds
+      cpu time            0.14 seconds
       
 NOTE: Libref SASDATA successfully assigned from logical server.
 NOTE: Libref STPSAMP successfully assigned from logical server.
@@ -58,7 +58,7 @@ NOTE: AUTOEXEC processing completed.
 26                  ;
 27               value pyr11a
 28                  1 = "10b"
-2                                                          The SAS System                             10:40 Friday, February 2, 2018
+2                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 29                  2 = "10c"
 30                  3 = "10d"
@@ -118,7 +118,7 @@ NOTE: AUTOEXEC processing completed.
 84                  out=tickimport
 85                  dbms=csv
 86                  replace
-3                                                          The SAS System                             10:40 Friday, February 2, 2018
+3                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 87                  ;
 88            run;
@@ -178,7 +178,7 @@ NOTE: AUTOEXEC processing completed.
 142              else if y = 2 then do;
 143                 count = count + carry;
 144                 if count > 4 then do;
-4                                                          The SAS System                             10:40 Friday, February 2, 2018
+4                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 145                    carry = count - 4;
 146                    count = 4;
@@ -238,7 +238,7 @@ NOTE: AUTOEXEC processing completed.
 200        
 201        ods pdf file="&path/pyramids.pdf" startpage=never;
 NOTE: Writing ODS PDF output to DISK destination "H:\GitHub\srosanba\pyramid\horst-pyramid\pyramids.pdf", printer "PDF".
-5                                                          The SAS System                             10:40 Friday, February 2, 2018
+5                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 202        %pyramid(goal=11a)
 MPRINT(PYRAMID):   data _null_;
@@ -270,7 +270,7 @@ MPRINT(PYRAMID):   run;
 
 NOTE: PROCEDURE FORMAT used (Total process time):
       real time           0.01 seconds
-      cpu time            0.01 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(PYRAMID):   *--- generate pyramid outline ---;
@@ -298,7 +298,7 @@ NOTE: DATA statement used (Total process time):
       real time           0.01 seconds
       cpu time            0.00 seconds
       
-6                                                          The SAS System                             10:40 Friday, February 2, 2018
+6                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 
 MPRINT(PYRAMID):   *--- import tick list ---;
@@ -312,7 +312,7 @@ WORK.PARMS.PARMS.SLIST.
 204         *   PRODUCT:   SAS
 205         *   VERSION:   9.4
 206         *   CREATOR:   External File Interface
-207         *   DATE:      02FEB18
+207         *   DATE:      14FEB18
 208         *   DESC:      Generated SAS Datastep Code
 209         *   TEMPLATE SOURCE:  (None Specified.)
 210         ***********************************************************************/
@@ -341,30 +341,30 @@ MPRINT(PYRAMID):   run;
 
 NOTE: The infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' is:
       Filename=H:\GitHub\srosanba\pyramid\horst-pyramid\ticks.csv,
-      RECFM=V,LRECL=32767,File Size (bytes)=492,
-      Last Modified=02Feb2018:10:37:54,
+      RECFM=V,LRECL=32767,File Size (bytes)=636,
+      Last Modified=14Feb2018:08:30:44,
       Create Time=02Feb2018:10:36:56
 
-NOTE: 30 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
+NOTE: 39 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
       The minimum record length was 14.
       The maximum record length was 14.
-NOTE: The data set WORK.TICKIMPORT has 30 observations and 2 variables.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.00 seconds
+      real time           0.03 seconds
+      cpu time            0.03 seconds
       
 
-30 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
+39 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
   
   
   
-7                                                          The SAS System                             10:40 Friday, February 2, 2018
+7                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 NOTE: WORK.TICKIMPORT data set was successfully created.
-NOTE: The data set WORK.TICKIMPORT has 30 observations and 2 variables.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
 NOTE: PROCEDURE IMPORT used (Total process time):
-      real time           0.09 seconds
-      cpu time            0.06 seconds
+      real time           0.21 seconds
+      cpu time            0.14 seconds
       
 
 MPRINT(PYRAMID):    ;
@@ -375,7 +375,7 @@ NOTE: Table WORK.GRADES created, with 4 rows and 1 columns.
 
 MPRINT(PYRAMID):   create table tickplot0 as select y from tickimport as ti inner join grades as g on ti.grade = put(g.y,pyr11a.) 
 order by y ;
-NOTE: Table WORK.TICKPLOT0 created, with 26 rows and 1 columns.
+NOTE: Table WORK.TICKPLOT0 created, with 32 rows and 1 columns.
 
 MPRINT(PYRAMID):   create table tickplot1 as select y, count(*) as count from tickplot0 group by y ;
 NOTE: Table WORK.TICKPLOT1 created, with 4 rows and 2 columns.
@@ -397,8 +397,8 @@ NOTE: There were 4 observations read from the data set WORK.GRADES.
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT1.
 NOTE: The data set WORK.TICKPLOT2 has 4 observations and 2 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.01 seconds
+      real time           0.00 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(PYRAMID):   proc sort data=tickplot2;
@@ -418,7 +418,7 @@ MPRINT(PYRAMID):   set tickplot2;
 MPRINT(PYRAMID):   retain carry 0;
 MPRINT(PYRAMID):   if y = 4 then do;
 MPRINT(PYRAMID):   if count > 1 then do;
-8                                                          The SAS System                             10:40 Friday, February 2, 2018
+8                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 MPRINT(PYRAMID):   carry = count - 1;
 MPRINT(PYRAMID):   count = 1;
@@ -478,11 +478,11 @@ MPRINT(PYRAMID):   run;
 
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT3.
 NOTE: The data set WORK.TICKPLOT4 has 15 observations and 6 variables.
-9                                                          The SAS System                             10:40 Friday, February 2, 2018
+9                                                          The SAS System                         08:30 Wednesday, February 14, 2018
 
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
 MPRINT(PYRAMID):   *--- plot outline and ticks ---;
@@ -506,12 +506,12 @@ MPRINT(PYRAMID):   scatter x=xo y=y / markerattrs=(symbol=square size=50);
 MPRINT(PYRAMID):   scatter x=xt y=y / markerattrs=(symbol=squarefilled size=40 color=green);
 MPRINT(PYRAMID):   yaxis display=(nolabel) integer;
 MPRINT(PYRAMID):   xaxis display=none;
-MPRINT(PYRAMID):   inset "2018-02-02" / position=topright;
+MPRINT(PYRAMID):   inset "2018-02-14" / position=topright;
 MPRINT(PYRAMID):   run;
 
 NOTE: PROCEDURE SGPLOT used (Total process time):
-      real time           2.01 seconds
-      cpu time            0.12 seconds
+      real time           2.48 seconds
+      cpu time            0.18 seconds
       
 NOTE: Listing image output written to H:\GitHub\srosanba\pyramid\horst-pyramid\pyr11a.png.
 NOTE: There were 30 observations read from the data set WORK.PLOTDATA.
@@ -538,7 +538,7 @@ MPRINT(PYRAMID):   value pyr11a 1 = "10b" 2 = "10c" 3 = "10d" 4 = "11a" ;
 NOTE: Format PYR11A is already on the library WORK.FORMATS.
 NOTE: Format PYR11A has been output.
 MPRINT(PYRAMID):   value pyr11b 1 = "10c" 2 = "10d" 3 = "11a" 4 = "11b" ;
-10                                                         The SAS System                             10:40 Friday, February 2, 2018
+10                                                         The SAS System                         08:30 Wednesday, February 14, 2018
 
 NOTE: Format PYR11B is already on the library WORK.FORMATS.
 NOTE: Format PYR11B has been output.
@@ -595,10 +595,10 @@ WORK.PARMS.PARMS.SLIST.
 226         *   PRODUCT:   SAS
 227         *   VERSION:   9.4
 228         *   CREATOR:   External File Interface
-229         *   DATE:      02FEB18
+229         *   DATE:      14FEB18
 230         *   DESC:      Generated SAS Datastep Code
 231         *   TEMPLATE SOURCE:  (None Specified.)
-11                                                         The SAS System                             10:40 Friday, February 2, 2018
+11                                                         The SAS System                         08:30 Wednesday, February 14, 2018
 
 232         ***********************************************************************/
 233            data WORK.TICKIMPORT    ;
@@ -626,28 +626,28 @@ MPRINT(PYRAMID):   run;
 
 NOTE: The infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' is:
       Filename=H:\GitHub\srosanba\pyramid\horst-pyramid\ticks.csv,
-      RECFM=V,LRECL=32767,File Size (bytes)=492,
-      Last Modified=02Feb2018:10:37:54,
+      RECFM=V,LRECL=32767,File Size (bytes)=636,
+      Last Modified=14Feb2018:08:30:44,
       Create Time=02Feb2018:10:36:56
 
-NOTE: 30 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
+NOTE: 39 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
       The minimum record length was 14.
       The maximum record length was 14.
-NOTE: The data set WORK.TICKIMPORT has 30 observations and 2 variables.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.07 seconds
+      cpu time            0.01 seconds
       
 
-30 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
+39 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
   
   
   
 NOTE: WORK.TICKIMPORT data set was successfully created.
-NOTE: The data set WORK.TICKIMPORT has 30 observations and 2 variables.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
 NOTE: PROCEDURE IMPORT used (Total process time):
-      real time           0.07 seconds
-      cpu time            0.06 seconds
+      real time           0.20 seconds
+      cpu time            0.11 seconds
       
 
 MPRINT(PYRAMID):    ;
@@ -658,9 +658,292 @@ NOTE: Table WORK.GRADES created, with 4 rows and 1 columns.
 
 MPRINT(PYRAMID):   create table tickplot0 as select y from tickimport as ti inner join grades as g on ti.grade = put(g.y,pyr11b.) 
 order by y ;
-12                                                         The SAS System                             10:40 Friday, February 2, 2018
+12                                                         The SAS System                         08:30 Wednesday, February 14, 2018
 
-NOTE: Table WORK.TICKPLOT0 created, with 12 rows and 1 columns.
+NOTE: Table WORK.TICKPLOT0 created, with 16 rows and 1 columns.
+
+MPRINT(PYRAMID):   create table tickplot1 as select y, count(*) as count from tickplot0 group by y ;
+NOTE: Table WORK.TICKPLOT1 created, with 4 rows and 2 columns.
+
+MPRINT(PYRAMID):   quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(PYRAMID):   *--- add rows for grades not present ---;
+MPRINT(PYRAMID):   data tickplot2;
+MPRINT(PYRAMID):   merge grades tickplot1;
+MPRINT(PYRAMID):   by y;
+MPRINT(PYRAMID):   if missing(count) then count = 0;
+MPRINT(PYRAMID):   run;
+
+NOTE: There were 4 observations read from the data set WORK.GRADES.
+NOTE: There were 4 observations read from the data set WORK.TICKPLOT1.
+NOTE: The data set WORK.TICKPLOT2 has 4 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(PYRAMID):   proc sort data=tickplot2;
+MPRINT(PYRAMID):   by descending y;
+MPRINT(PYRAMID):   run;
+
+NOTE: There were 4 observations read from the data set WORK.TICKPLOT2.
+NOTE: The data set WORK.TICKPLOT2 has 4 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(PYRAMID):   *--- relocate over-climbed grades ---;
+MPRINT(PYRAMID):   data tickplot3;
+MPRINT(PYRAMID):   set tickplot2;
+MPRINT(PYRAMID):   retain carry 0;
+MPRINT(PYRAMID):   if y = 4 then do;
+MPRINT(PYRAMID):   if count > 1 then do;
+MPRINT(PYRAMID):   carry = count - 1;
+MPRINT(PYRAMID):   count = 1;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   else if y = 3 then do;
+MPRINT(PYRAMID):   count = count + carry;
+MPRINT(PYRAMID):   if count > 2 then do;
+MPRINT(PYRAMID):   carry = count - 2;
+MPRINT(PYRAMID):   count = 2;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   else if y = 2 then do;
+MPRINT(PYRAMID):   count = count + carry;
+MPRINT(PYRAMID):   if count > 4 then do;
+MPRINT(PYRAMID):   carry = count - 4;
+13                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
+MPRINT(PYRAMID):   count = 4;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   else if y = 1 then do;
+MPRINT(PYRAMID):   count = count + carry;
+MPRINT(PYRAMID):   if count > 8 then do;
+MPRINT(PYRAMID):   carry = count - 8;
+MPRINT(PYRAMID):   count = 8;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   run;
+
+NOTE: There were 4 observations read from the data set WORK.TICKPLOT2.
+NOTE: The data set WORK.TICKPLOT3 has 4 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(PYRAMID):   *--- place ticks over outline ---;
+MPRINT(PYRAMID):   data tickplot4;
+MPRINT(PYRAMID):   set tickplot3;
+MPRINT(PYRAMID):   if count > 0 then do;
+MPRINT(PYRAMID):   if mod(count,2) = 0 then do;
+MPRINT(PYRAMID):   start = -1*count/2 + 0.5;
+MPRINT(PYRAMID):   end = -1*start;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   else if mod(count,2) = 1 then do;
+MPRINT(PYRAMID):   start = -1*count/2;
+MPRINT(PYRAMID):   end = -1*start - 1;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   if y = 4 then do;
+MPRINT(PYRAMID):   start = 0;
+MPRINT(PYRAMID):   end = 0;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   do xt = start to end;
+MPRINT(PYRAMID):   output;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   run;
+
+NOTE: There were 4 observations read from the data set WORK.TICKPLOT3.
+NOTE: The data set WORK.TICKPLOT4 has 15 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(PYRAMID):   *--- plot outline and ticks ---;
+MPRINT(PYRAMID):   data plotdata;
+MPRINT(PYRAMID):   set outline tickplot4;
+MPRINT(PYRAMID):   run;
+
+NOTE: There were 15 observations read from the data set WORK.OUTLINE.
+NOTE: There were 15 observations read from the data set WORK.TICKPLOT4.
+NOTE: The data set WORK.PLOTDATA has 30 observations and 7 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+14                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
+      cpu time            0.01 seconds
+      
+
+MPRINT(PYRAMID):   ods graphics / reset=all width=6in height=2.75in;
+MPRINT(PYRAMID):   ods listing gpath = "H:\GitHub\srosanba\pyramid\horst-pyramid";
+MPRINT(PYRAMID):   ods graphics / imagename = "pyr11b";
+MPRINT(PYRAMID):   proc sgplot data=plotdata noautolegend;
+MPRINT(PYRAMID):   scatter x=xo y=y / markerattrs=(symbol=square size=50);
+MPRINT(PYRAMID):   scatter x=xt y=y / markerattrs=(symbol=squarefilled size=40 color=green);
+MPRINT(PYRAMID):   yaxis display=(nolabel) integer;
+MPRINT(PYRAMID):   xaxis display=none;
+MPRINT(PYRAMID):   inset "2018-02-14" / position=topright;
+MPRINT(PYRAMID):   run;
+
+NOTE: PROCEDURE SGPLOT used (Total process time):
+      real time           0.35 seconds
+      cpu time            0.09 seconds
+      
+NOTE: Listing image output written to H:\GitHub\srosanba\pyramid\horst-pyramid\pyr11b.png.
+NOTE: There were 30 observations read from the data set WORK.PLOTDATA.
+
+246        %pyramid(goal=11c)
+MPRINT(PYRAMID):   data _null_;
+MPRINT(PYRAMID):   today = today();
+MPRINT(PYRAMID):   call symputx('today',put(today,yymmdd10.));
+MPRINT(PYRAMID):   run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(PYRAMID):   proc format;
+MPRINT(PYRAMID):   value pyr10c 1 = "9" 2 = "10a" 3 = "10b" 4 = "10c" ;
+NOTE: Format PYR10C is already on the library WORK.FORMATS.
+NOTE: Format PYR10C has been output.
+MPRINT(PYRAMID):   value pyr10d 1 = "10a" 2 = "10b" 3 = "10c" 4 = "10d" ;
+NOTE: Format PYR10D is already on the library WORK.FORMATS.
+NOTE: Format PYR10D has been output.
+MPRINT(PYRAMID):   value pyr11a 1 = "10b" 2 = "10c" 3 = "10d" 4 = "11a" ;
+NOTE: Format PYR11A is already on the library WORK.FORMATS.
+NOTE: Format PYR11A has been output.
+MPRINT(PYRAMID):   value pyr11b 1 = "10c" 2 = "10d" 3 = "11a" 4 = "11b" ;
+NOTE: Format PYR11B is already on the library WORK.FORMATS.
+NOTE: Format PYR11B has been output.
+MPRINT(PYRAMID):   value pyr11c 1 = "10d" 2 = "11a" 3 = "11b" 4 = "11c" ;
+NOTE: Format PYR11C is already on the library WORK.FORMATS.
+NOTE: Format PYR11C has been output.
+MPRINT(PYRAMID):   value pyr11d 1 = "11a" 2 = "11b" 3 = "11c" 4 = "11d" ;
+NOTE: Format PYR11D is already on the library WORK.FORMATS.
+NOTE: Format PYR11D has been output.
+MPRINT(PYRAMID):   value pyr12a 1 = "11b" 2 = "11c" 3 = "11d" 4 = "12a" ;
+NOTE: Format PYR12A is already on the library WORK.FORMATS.
+NOTE: Format PYR12A has been output.
+MPRINT(PYRAMID):   run;
+
+NOTE: PROCEDURE FORMAT used (Total process time):
+      real time           0.00 seconds
+15                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
+      cpu time            0.00 seconds
+      
+
+MPRINT(PYRAMID):   *--- generate pyramid outline ---;
+MPRINT(PYRAMID):   data outline;
+MPRINT(PYRAMID):   y = 1;
+MPRINT(PYRAMID):   do xo = -3.5 to 3.5;
+MPRINT(PYRAMID):   output;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   y = 2;
+MPRINT(PYRAMID):   do xo = -1.5 to 1.5;
+MPRINT(PYRAMID):   output;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   y = 3;
+MPRINT(PYRAMID):   do xo = -0.5 to 0.5;
+MPRINT(PYRAMID):   output;
+MPRINT(PYRAMID):   end;
+MPRINT(PYRAMID):   y = 4;
+MPRINT(PYRAMID):   xo = 0;
+MPRINT(PYRAMID):   output;
+MPRINT(PYRAMID):   format y pyr11c.;
+MPRINT(PYRAMID):   run;
+
+NOTE: The data set WORK.OUTLINE has 15 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(PYRAMID):   *--- import tick list ---;
+MPRINT(PYRAMID):   proc import datafile="H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv" out=tickimport dbms=csv replace ;
+MPRINT(PYRAMID):   ADLM;
+MPRINT(PYRAMID):   run;
+
+NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
+WORK.PARMS.PARMS.SLIST.
+247         /**********************************************************************
+248         *   PRODUCT:   SAS
+249         *   VERSION:   9.4
+250         *   CREATOR:   External File Interface
+251         *   DATE:      14FEB18
+252         *   DESC:      Generated SAS Datastep Code
+253         *   TEMPLATE SOURCE:  (None Specified.)
+254         ***********************************************************************/
+255            data WORK.TICKIMPORT    ;
+MPRINT(PYRAMID):   data WORK.TICKIMPORT ;
+256            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+257            infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+MPRINT(PYRAMID):   infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+258               informat date yymmdd10. ;
+MPRINT(PYRAMID):   informat date yymmdd10. ;
+259               informat grade $3. ;
+MPRINT(PYRAMID):   informat grade $3. ;
+260               format date yymmdd10. ;
+MPRINT(PYRAMID):   format date yymmdd10. ;
+261               format grade $3. ;
+MPRINT(PYRAMID):   format grade $3. ;
+262            input
+16                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
+263                        date
+264                        grade $
+265            ;
+MPRINT(PYRAMID):   input date grade $ ;
+266            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+MPRINT(PYRAMID):   if _ERROR_ then call symputx('_EFIERR_',1);
+267            run;
+MPRINT(PYRAMID):   run;
+
+NOTE: The infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' is:
+      Filename=H:\GitHub\srosanba\pyramid\horst-pyramid\ticks.csv,
+      RECFM=V,LRECL=32767,File Size (bytes)=636,
+      Last Modified=14Feb2018:08:30:44,
+      Create Time=02Feb2018:10:36:56
+
+NOTE: 39 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
+      The minimum record length was 14.
+      The maximum record length was 14.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+
+39 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
+  
+  
+  
+NOTE: WORK.TICKIMPORT data set was successfully created.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.11 seconds
+      
+
+MPRINT(PYRAMID):    ;
+MPRINT(PYRAMID):   *-- count ticks at each grade ---;
+MPRINT(PYRAMID):   proc sql;
+MPRINT(PYRAMID):   create table grades as select distinct y from outline ;
+NOTE: Table WORK.GRADES created, with 4 rows and 1 columns.
+
+MPRINT(PYRAMID):   create table tickplot0 as select y from tickimport as ti inner join grades as g on ti.grade = put(g.y,pyr11c.) 
+order by y ;
+NOTE: Table WORK.TICKPLOT0 created, with 8 rows and 1 columns.
 
 MPRINT(PYRAMID):   create table tickplot1 as select y, count(*) as count from tickplot0 group by y ;
 NOTE: Table WORK.TICKPLOT1 created, with 3 rows and 2 columns.
@@ -675,6 +958,8 @@ MPRINT(PYRAMID):   *--- add rows for grades not present ---;
 MPRINT(PYRAMID):   data tickplot2;
 MPRINT(PYRAMID):   merge grades tickplot1;
 MPRINT(PYRAMID):   by y;
+17                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
 MPRINT(PYRAMID):   if missing(count) then count = 0;
 MPRINT(PYRAMID):   run;
 
@@ -718,8 +1003,6 @@ MPRINT(PYRAMID):   else if y = 2 then do;
 MPRINT(PYRAMID):   count = count + carry;
 MPRINT(PYRAMID):   if count > 4 then do;
 MPRINT(PYRAMID):   carry = count - 4;
-13                                                         The SAS System                             10:40 Friday, February 2, 2018
-
 MPRINT(PYRAMID):   count = 4;
 MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   end;
@@ -735,8 +1018,10 @@ MPRINT(PYRAMID):   run;
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT2.
 NOTE: The data set WORK.TICKPLOT3 has 4 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
+18                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
       real time           0.01 seconds
-      cpu time            0.01 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(PYRAMID):   *--- place ticks over outline ---;
@@ -762,10 +1047,10 @@ MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   run;
 
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT3.
-NOTE: The data set WORK.TICKPLOT4 has 12 observations and 6 variables.
+NOTE: The data set WORK.TICKPLOT4 has 8 observations and 6 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
 MPRINT(PYRAMID):   *--- plot outline and ticks ---;
@@ -774,42 +1059,42 @@ MPRINT(PYRAMID):   set outline tickplot4;
 MPRINT(PYRAMID):   run;
 
 NOTE: There were 15 observations read from the data set WORK.OUTLINE.
-NOTE: There were 12 observations read from the data set WORK.TICKPLOT4.
-NOTE: The data set WORK.PLOTDATA has 27 observations and 7 variables.
+NOTE: There were 8 observations read from the data set WORK.TICKPLOT4.
+NOTE: The data set WORK.PLOTDATA has 23 observations and 7 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-14                                                         The SAS System                             10:40 Friday, February 2, 2018
-
-      cpu time            0.01 seconds
+      real time           0.00 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(PYRAMID):   ods graphics / reset=all width=6in height=2.75in;
 MPRINT(PYRAMID):   ods listing gpath = "H:\GitHub\srosanba\pyramid\horst-pyramid";
-MPRINT(PYRAMID):   ods graphics / imagename = "pyr11b";
+MPRINT(PYRAMID):   ods graphics / imagename = "pyr11c";
 MPRINT(PYRAMID):   proc sgplot data=plotdata noautolegend;
 MPRINT(PYRAMID):   scatter x=xo y=y / markerattrs=(symbol=square size=50);
 MPRINT(PYRAMID):   scatter x=xt y=y / markerattrs=(symbol=squarefilled size=40 color=green);
 MPRINT(PYRAMID):   yaxis display=(nolabel) integer;
 MPRINT(PYRAMID):   xaxis display=none;
-MPRINT(PYRAMID):   inset "2018-02-02" / position=topright;
+MPRINT(PYRAMID):   inset "2018-02-14" / position=topright;
 MPRINT(PYRAMID):   run;
 
 NOTE: PROCEDURE SGPLOT used (Total process time):
-      real time           0.28 seconds
-      cpu time            0.01 seconds
-      
-NOTE: Listing image output written to H:\GitHub\srosanba\pyramid\horst-pyramid\pyr11b.png.
-NOTE: There were 27 observations read from the data set WORK.PLOTDATA.
+19                                                         The SAS System                         08:30 Wednesday, February 14, 2018
 
-246        %pyramid(goal=11c)
+      real time           0.34 seconds
+      cpu time            0.09 seconds
+      
+NOTE: Listing image output written to H:\GitHub\srosanba\pyramid\horst-pyramid\pyr11c.png.
+NOTE: There were 23 observations read from the data set WORK.PLOTDATA.
+
+268        %pyramid(goal=11d)
 MPRINT(PYRAMID):   data _null_;
 MPRINT(PYRAMID):   today = today();
 MPRINT(PYRAMID):   call symputx('today',put(today,yymmdd10.));
 MPRINT(PYRAMID):   run;
 
 NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.01 seconds
+      real time           0.00 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(PYRAMID):   proc format;
@@ -837,9 +1122,7 @@ NOTE: Format PYR12A has been output.
 MPRINT(PYRAMID):   run;
 
 NOTE: PROCEDURE FORMAT used (Total process time):
-      real time           0.00 seconds
-15                                                         The SAS System                             10:40 Friday, February 2, 2018
-
+      real time           0.01 seconds
       cpu time            0.00 seconds
       
 
@@ -855,12 +1138,14 @@ MPRINT(PYRAMID):   output;
 MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   y = 3;
 MPRINT(PYRAMID):   do xo = -0.5 to 0.5;
+20                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
 MPRINT(PYRAMID):   output;
 MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   y = 4;
 MPRINT(PYRAMID):   xo = 0;
 MPRINT(PYRAMID):   output;
-MPRINT(PYRAMID):   format y pyr11c.;
+MPRINT(PYRAMID):   format y pyr11d.;
 MPRINT(PYRAMID):   run;
 
 NOTE: The data set WORK.OUTLINE has 15 observations and 2 variables.
@@ -876,63 +1161,63 @@ MPRINT(PYRAMID):   run;
 
 NOTE: Unable to open parameter catalog: SASUSER.PARMS.PARMS.SLIST in update mode. Temporary parameter values will be saved to 
 WORK.PARMS.PARMS.SLIST.
-247         /**********************************************************************
-248         *   PRODUCT:   SAS
-249         *   VERSION:   9.4
-250         *   CREATOR:   External File Interface
-251         *   DATE:      02FEB18
-252         *   DESC:      Generated SAS Datastep Code
-253         *   TEMPLATE SOURCE:  (None Specified.)
-254         ***********************************************************************/
-255            data WORK.TICKIMPORT    ;
+269         /**********************************************************************
+270         *   PRODUCT:   SAS
+271         *   VERSION:   9.4
+272         *   CREATOR:   External File Interface
+273         *   DATE:      14FEB18
+274         *   DESC:      Generated SAS Datastep Code
+275         *   TEMPLATE SOURCE:  (None Specified.)
+276         ***********************************************************************/
+277            data WORK.TICKIMPORT    ;
 MPRINT(PYRAMID):   data WORK.TICKIMPORT ;
-256            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
-257            infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+278            %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+279            infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
 MPRINT(PYRAMID):   infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
-258               informat date yymmdd10. ;
+280               informat date yymmdd10. ;
 MPRINT(PYRAMID):   informat date yymmdd10. ;
-259               informat grade $3. ;
+281               informat grade $3. ;
 MPRINT(PYRAMID):   informat grade $3. ;
-260               format date yymmdd10. ;
+282               format date yymmdd10. ;
 MPRINT(PYRAMID):   format date yymmdd10. ;
-261               format grade $3. ;
+283               format grade $3. ;
 MPRINT(PYRAMID):   format grade $3. ;
-262            input
-16                                                         The SAS System                             10:40 Friday, February 2, 2018
-
-263                        date
-264                        grade $
-265            ;
+284            input
+285                        date
+286                        grade $
+287            ;
 MPRINT(PYRAMID):   input date grade $ ;
-266            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+288            if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
 MPRINT(PYRAMID):   if _ERROR_ then call symputx('_EFIERR_',1);
-267            run;
+289            run;
 MPRINT(PYRAMID):   run;
 
 NOTE: The infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv' is:
       Filename=H:\GitHub\srosanba\pyramid\horst-pyramid\ticks.csv,
-      RECFM=V,LRECL=32767,File Size (bytes)=492,
-      Last Modified=02Feb2018:10:37:54,
+      RECFM=V,LRECL=32767,File Size (bytes)=636,
+      Last Modified=14Feb2018:08:30:44,
       Create Time=02Feb2018:10:36:56
 
-NOTE: 30 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
+21                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
+NOTE: 39 records were read from the infile 'H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv'.
       The minimum record length was 14.
       The maximum record length was 14.
-NOTE: The data set WORK.TICKIMPORT has 30 observations and 2 variables.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.00 seconds
+      real time           0.03 seconds
+      cpu time            0.03 seconds
       
 
-30 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
+39 rows created in WORK.TICKIMPORT from H:\GitHub\srosanba\pyramid\horst-pyramid/ticks.csv.
   
   
   
 NOTE: WORK.TICKIMPORT data set was successfully created.
-NOTE: The data set WORK.TICKIMPORT has 30 observations and 2 variables.
+NOTE: The data set WORK.TICKIMPORT has 39 observations and 2 variables.
 NOTE: PROCEDURE IMPORT used (Total process time):
-      real time           0.06 seconds
-      cpu time            0.04 seconds
+      real time           0.12 seconds
+      cpu time            0.12 seconds
       
 
 MPRINT(PYRAMID):    ;
@@ -941,25 +1226,23 @@ MPRINT(PYRAMID):   proc sql;
 MPRINT(PYRAMID):   create table grades as select distinct y from outline ;
 NOTE: Table WORK.GRADES created, with 4 rows and 1 columns.
 
-MPRINT(PYRAMID):   create table tickplot0 as select y from tickimport as ti inner join grades as g on ti.grade = put(g.y,pyr11c.) 
+MPRINT(PYRAMID):   create table tickplot0 as select y from tickimport as ti inner join grades as g on ti.grade = put(g.y,pyr11d.) 
 order by y ;
-NOTE: Table WORK.TICKPLOT0 created, with 5 rows and 1 columns.
+NOTE: Table WORK.TICKPLOT0 created, with 4 rows and 1 columns.
 
 MPRINT(PYRAMID):   create table tickplot1 as select y, count(*) as count from tickplot0 group by y ;
 NOTE: Table WORK.TICKPLOT1 created, with 2 rows and 2 columns.
 
 MPRINT(PYRAMID):   quit;
 NOTE: PROCEDURE SQL used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.01 seconds
+      real time           0.03 seconds
+      cpu time            0.03 seconds
       
 
 MPRINT(PYRAMID):   *--- add rows for grades not present ---;
 MPRINT(PYRAMID):   data tickplot2;
 MPRINT(PYRAMID):   merge grades tickplot1;
 MPRINT(PYRAMID):   by y;
-17                                                         The SAS System                             10:40 Friday, February 2, 2018
-
 MPRINT(PYRAMID):   if missing(count) then count = 0;
 MPRINT(PYRAMID):   run;
 
@@ -974,6 +1257,8 @@ NOTE: DATA statement used (Total process time):
 MPRINT(PYRAMID):   proc sort data=tickplot2;
 MPRINT(PYRAMID):   by descending y;
 MPRINT(PYRAMID):   run;
+
+22                                                         The SAS System                         08:30 Wednesday, February 14, 2018
 
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT2.
 NOTE: The data set WORK.TICKPLOT2 has 4 observations and 2 variables.
@@ -1018,8 +1303,6 @@ MPRINT(PYRAMID):   run;
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT2.
 NOTE: The data set WORK.TICKPLOT3 has 4 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
-18                                                         The SAS System                             10:40 Friday, February 2, 2018
-
       real time           0.01 seconds
       cpu time            0.01 seconds
       
@@ -1035,6 +1318,8 @@ MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   else if mod(count,2) = 1 then do;
 MPRINT(PYRAMID):   start = -1*count/2;
 MPRINT(PYRAMID):   end = -1*start - 1;
+23                                                         The SAS System                         08:30 Wednesday, February 14, 2018
+
 MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   if y = 4 then do;
 MPRINT(PYRAMID):   start = 0;
@@ -1047,7 +1332,7 @@ MPRINT(PYRAMID):   end;
 MPRINT(PYRAMID):   run;
 
 NOTE: There were 4 observations read from the data set WORK.TICKPLOT3.
-NOTE: The data set WORK.TICKPLOT4 has 5 observations and 6 variables.
+NOTE: The data set WORK.TICKPLOT4 has 4 observations and 6 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
@@ -1059,8 +1344,8 @@ MPRINT(PYRAMID):   set outline tickplot4;
 MPRINT(PYRAMID):   run;
 
 NOTE: There were 15 observations read from the data set WORK.OUTLINE.
-NOTE: There were 5 observations read from the data set WORK.TICKPLOT4.
-NOTE: The data set WORK.PLOTDATA has 20 observations and 7 variables.
+NOTE: There were 4 observations read from the data set WORK.TICKPLOT4.
+NOTE: The data set WORK.PLOTDATA has 19 observations and 7 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.01 seconds
       cpu time            0.01 seconds
@@ -1068,28 +1353,26 @@ NOTE: DATA statement used (Total process time):
 
 MPRINT(PYRAMID):   ods graphics / reset=all width=6in height=2.75in;
 MPRINT(PYRAMID):   ods listing gpath = "H:\GitHub\srosanba\pyramid\horst-pyramid";
-MPRINT(PYRAMID):   ods graphics / imagename = "pyr11c";
+MPRINT(PYRAMID):   ods graphics / imagename = "pyr11d";
 MPRINT(PYRAMID):   proc sgplot data=plotdata noautolegend;
 MPRINT(PYRAMID):   scatter x=xo y=y / markerattrs=(symbol=square size=50);
 MPRINT(PYRAMID):   scatter x=xt y=y / markerattrs=(symbol=squarefilled size=40 color=green);
 MPRINT(PYRAMID):   yaxis display=(nolabel) integer;
 MPRINT(PYRAMID):   xaxis display=none;
-MPRINT(PYRAMID):   inset "2018-02-02" / position=topright;
+MPRINT(PYRAMID):   inset "2018-02-14" / position=topright;
 MPRINT(PYRAMID):   run;
 
 NOTE: PROCEDURE SGPLOT used (Total process time):
-19                                                         The SAS System                             10:40 Friday, February 2, 2018
-
-      real time           0.25 seconds
-      cpu time            0.04 seconds
+      real time           0.32 seconds
+      cpu time            0.06 seconds
       
-NOTE: Listing image output written to H:\GitHub\srosanba\pyramid\horst-pyramid\pyr11c.png.
-NOTE: There were 20 observations read from the data set WORK.PLOTDATA.
+NOTE: Listing image output written to H:\GitHub\srosanba\pyramid\horst-pyramid\pyr11d.png.
+NOTE: There were 19 observations read from the data set WORK.PLOTDATA.
 
-268        ods pdf close;
-NOTE: ODS PDF printed 1 page to H:\GitHub\srosanba\pyramid\horst-pyramid\pyramids.pdf.
+290        ods pdf close;
+NOTE: ODS PDF printed 2 pages to H:\GitHub\srosanba\pyramid\horst-pyramid\pyramids.pdf.
 NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
 NOTE: The SAS System used:
-      real time           3.42 seconds
-      cpu time            0.84 seconds
+      real time           5.53 seconds
+      cpu time            1.65 seconds
       

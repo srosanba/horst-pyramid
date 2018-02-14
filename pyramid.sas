@@ -202,4 +202,5 @@ ods pdf file="&path/pyramids.pdf" startpage=never;
 %pyramid(goal=11a)
 %pyramid(goal=11b)
 %pyramid(goal=11c)
+%pyramid(goal=11d)
 ods pdf close;
