@@ -1,6 +1,6 @@
 options mprint;
 
-%let path = H:\GitHub\srosanba\pyramid\horst-pyramid;
+%let path = H:\GitHub\srosanba\horst-pyramid;
 %*let path = /folders/myfolders/horst-pyramid;
 
 
